@@ -34,6 +34,9 @@ d3.json("/directory?root=/Users/Chris/Development/file-system-graph", function(e
       .attr("d", arc)
       .style("fill", function(d) { return color((d.children ? d : d.parent).name); })
       .on("click", click);
+    
+    path.append('title')
+        .text(function(d){ return d.name;});
 
   function click(d) {
     path.transition()
