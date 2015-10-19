@@ -14,7 +14,7 @@ router.get('/', function (req, res) {
 
 
     var traverseFileSystem = function (currentPath) {
-//        console.log(currentPath);
+        //        console.log(currentPath);
 
         return fs.list(currentPath)
             .then(function (files) {
@@ -29,12 +29,12 @@ router.get('/', function (req, res) {
                                     size: stat.size
                                 };
                             } else if (stat.isDirectory()) {
-                                return traverseFileSystem(currentFile).then(function(children){
+                                return traverseFileSystem(currentFile).then(function (children) {
                                     var totalSize = 0;
-                                    children.forEach(function(child){
+                                    children.forEach(function (child) {
                                         totalSize += child.size;
                                     });
-                                    
+
                                     return {
                                         name: file,
                                         size: totalSize,
@@ -49,12 +49,18 @@ router.get('/', function (req, res) {
             });
     };
     traverseFileSystem(root).then(function (children) {
+        var totalSize = 0;
+        children.forEach(function (child) {
+            totalSize += child.size;
+        });
+        
         var tree = {
             name: root,
+            size: totalSize,
             children: children
         };
         res.send(tree);
-//        res.send('<pre><code>' + JSON.stringify(tree, null, '  ') + '</code></pre>');
+        //        res.send('<pre><code>' + JSON.stringify(tree, null, '  ') + '</code></pre>');
     });
 
 });
