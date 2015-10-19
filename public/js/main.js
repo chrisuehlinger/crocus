@@ -25,7 +25,14 @@ var arc = d3.svg.arc()
     .innerRadius(function(d) { return Math.max(0, y(d.y)); })
     .outerRadius(function(d) { return Math.max(0, y(d.y + d.dy)); });
 
-d3.json("/directory?root=/Users/Chris/Development/file-system-graph", function(error, root) {
+function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
+d3.json("/directory?root=" + getParameterByName('root'), function(error, root) {
   if (error) throw error;
 
   var path = svg.selectAll("path")
