@@ -43,7 +43,7 @@ d3.json("/directory?root=" + getParameterByName('root'), function(error, root) {
       .on("click", click);
     
     path.append('title')
-        .text(function(d){ return d.name;});
+        .text(function(d){ return d.name + ' ' + bytes(d.size);});
 
   function click(d) {
     path.transition()

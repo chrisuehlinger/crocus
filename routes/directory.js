@@ -30,8 +30,14 @@ router.get('/', function (req, res) {
                                 };
                             } else if (stat.isDirectory()) {
                                 return traverseFileSystem(currentFile).then(function(children){
+                                    var totalSize = 0;
+                                    children.forEach(function(child){
+                                        totalSize += child.size;
+                                    });
+                                    
                                     return {
                                         name: file,
+                                        size: totalSize,
                                         children: children
                                     };
                                 });
