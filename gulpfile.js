@@ -17,7 +17,7 @@ gulp.task('watch', function() {
 gulp.task('develop', function () {
   livereload.listen();
   nodemon({
-    script: 'bin/www',
+    script: 'bin/crocus',
     ext: 'js jade coffee',
   }).on('restart', function () {
     setTimeout(function () {
