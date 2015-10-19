@@ -1,0 +1,15 @@
+/* line 1, /Users/Chris/Development/file-system-graph/public/css/style.scss */
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+
+/* line 6, /Users/Chris/Development/file-system-graph/public/css/style.scss */
+a {
+  color: #00B7FF; }
+
+/* line 10, /Users/Chris/Development/file-system-graph/public/css/style.scss */
+path {
+  stroke: #fff;
+  fill-rule: evenodd; }
+
+/*# sourceMappingURL=style.css.map */
