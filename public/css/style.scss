@@ -1,14 +1,43 @@
+@import url(https://fonts.googleapis.com/css?family=Pacifico);
+
 body {
   margin: 0;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
-  color: #00B7FF;
+header{
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+h1 {
+  font-family: 'Pacifico', sans-serif;
+  font-size: 72px;
+  margin: 10px 0;    
+  color: #A100FF;
+}
+
+#pathForm {
+  display: flex;
+  align-items: center;
+  
+  input {
+    flex-grow: 2;
+    
+  }
+  
+  button {
+    margin-left: 10px;
+    padding: 5px;
+  }
+  
 }
 
 .breadcrumbs {
+  margin-top: 20px;
   min-height: 150px;
+  
   .crumb {
     display: inline-block;
     vertical-align: middle;
