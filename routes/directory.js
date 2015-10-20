@@ -3,19 +3,11 @@ var router = express.Router();
 var fs = require('q-io/fs');
 var q = require('q');
 
-/* GET directory listing. */
-router.get('/', function (req, res) {
+/* GET directory tree listing. */
+router.get('/tree', function (req, res) {
     var root = req.query.root;
 
-    //  fs.stat(root)
-    //    .then(function (stats) {
-    //      res.send('<pre><code>' + JSON.stringify(stats, null, '  ') + '</code></pre>');
-    //    });
-
-
     var traverseFileSystem = function (currentPath) {
-        //        console.log(currentPath);
-
         return fs.list(currentPath)
             .then(function (files) {
                 var promises = [];
@@ -26,6 +18,7 @@ router.get('/', function (req, res) {
                             if (stat.isFile()) {
                                 return {
                                     name: file,
+                                    fullPath: currentFile,
                                     size: stat.size
                                 };
                             } else if (stat.isDirectory()) {
@@ -37,6 +30,7 @@ router.get('/', function (req, res) {
 
                                     return {
                                         name: file,
+                                        fullPath: currentFile,
                                         size: totalSize,
                                         children: children
                                     };
@@ -56,6 +50,7 @@ router.get('/', function (req, res) {
         
         var tree = {
             name: root,
+            fullPath: root,
             size: totalSize,
             children: children
         };
@@ -63,6 +58,10 @@ router.get('/', function (req, res) {
         //        res.send('<pre><code>' + JSON.stringify(tree, null, '  ') + '</code></pre>');
     });
 
+});
+
+router.get('/autocomplete', function(req, res){
+  
 });
 
 module.exports = router;

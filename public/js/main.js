@@ -80,7 +80,7 @@ d3.select('#pathForm')
   });
 
 function update(rootPath) {
-  d3.json("/directory?root=" + rootPath, function (error, root) {
+  d3.json("/directory/tree?root=" + rootPath, function (error, root) {
     if (error) throw error;
 
     svg.selectAll("path").remove();
