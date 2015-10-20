@@ -16,8 +16,36 @@ var canvas = d3.select("canvas")
   .attr("width", width)
   .attr("height", height);
 
+
 var ctx = canvas.node().getContext('2d');
 ctx.translate(width / 2, (height / 2 + 10));
+
+var devicePixelRatio = window.devicePixelRatio || 1,
+  backingStoreRatio = ctx.webkitBackingStorePixelRatio ||
+  ctx.mozBackingStorePixelRatio ||
+  ctx.msBackingStorePixelRatio ||
+  ctx.oBackingStorePixelRatio ||
+  ctx.backingStorePixelRatio || 1,
+  ratio = devicePixelRatio / backingStoreRatio;
+
+if (devicePixelRatio !== backingStoreRatio) {
+
+  canvas.node().width = width * ratio;
+  canvas.node().height = height * ratio;
+
+  canvas
+    .style("width", width + 'px')
+    .style("height", height + 'px');
+
+  // now scale the context to counter
+  // the fact that we've manually scaled
+  // our canvas element
+  ctx.scale(ratio, ratio);
+
+}
+ctx.translate(width / 2, (height / 2 + 10));
+
+
 
 var svg = d3.select("svg.svg-mask")
   .attr("width", width)
@@ -68,27 +96,35 @@ function update(rootPath) {
       .text(function (d) {
         return d.name + ' ' + bytes(d.size);
       });
-    
+
     var highlighted = [];
-    function mouseover(d){
+
+    function mouseover(d) {
       highlighted = [];
-      partition.nodes(root).forEach(function(d){ d.highlighted = false; });
+      partition.nodes(root).forEach(function (d) {
+        d.highlighted = false;
+      });
       highlightChain(d);
     }
-    function highlightChain(d){
-        highlighted.push(d);
-        d.highlighted = true;
-        if(d.depth === 0){
-          path.attr("class", function(d){ return d.highlighted && 'highlight'; });
-          highlighted.reverse();
-          breadcrumbRender(highlighted);
-          canvasRender(partition.nodes(root).filter(function (d) { return x(d.dx) > sizeThreshold;}), highlighted);
-        } else {
-          highlightChain(d.parent);
-        }
-    
+
+    function highlightChain(d) {
+      highlighted.push(d);
+      d.highlighted = true;
+      if (d.depth === 0) {
+        path.attr("class", function (d) {
+          return d.highlighted && 'highlight';
+        });
+        highlighted.reverse();
+        breadcrumbRender(highlighted);
+        canvasRender(partition.nodes(root).filter(function (d) {
+          return x(d.dx) > sizeThreshold;
+        }), highlighted);
+      } else {
+        highlightChain(d.parent);
+      }
+
     }
-    
+
     canvasRender(partition.nodes(root).filter(function (d) {
       return x(d.dx) > sizeThreshold;
     }), highlighted);
@@ -119,22 +155,24 @@ function update(rootPath) {
   });
 }
 
-function breadcrumbRender(highlighted){
+function breadcrumbRender(highlighted) {
   console.log(highlighted);
   var crumbs = d3.select('.breadcrumbs')
     .selectAll('.crumb')
     .data(highlighted);
-  
+
   crumbs
     .enter().append('div')
-      .attr('class', 'crumb');
-  
+    .attr('class', 'crumb');
+
   crumbs.exit().remove();
-  
+
   crumbs
-    .text(function(d){ return d.name; });
-  
-  var finalSize = bytes(highlighted[highlighted.length-1].size);
+    .text(function (d) {
+      return d.name;
+    });
+
+  var finalSize = bytes(highlighted[highlighted.length - 1].size);
   d3.select('.breadcrumbs .size-label').remove();
   d3.select('.breadcrumbs')
     .append('div')
