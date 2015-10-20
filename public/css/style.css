@@ -8,13 +8,67 @@ a {
   color: #00B7FF; }
 
 /* line 10, /Users/Chris/Development/crocus/public/css/style.scss */
-svg {
-  display: block;
-  margin: 50px auto; }
+.breadcrumbs {
+  min-height: 150px; }
+  /* line 12, /Users/Chris/Development/crocus/public/css/style.scss */
+  .breadcrumbs .crumb {
+    display: inline-block;
+    vertical-align: middle;
+    background: #007bff;
+    color: #fff;
+    height: 20px;
+    padding: 5px;
+    padding-left: 20px;
+    margin: 5px 2px;
+    position: relative; }
+    /* line 23, /Users/Chris/Development/crocus/public/css/style.scss */
+    .breadcrumbs .crumb:before {
+      position: absolute;
+      top: 0;
+      left: 0px;
+      content: '';
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 15px 0 15px 15px;
+      border-color: transparent transparent transparent #fff; }
+    /* line 36, /Users/Chris/Development/crocus/public/css/style.scss */
+    .breadcrumbs .crumb:after {
+      position: absolute;
+      top: 0;
+      right: -15px;
+      content: '';
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 15px 0 15px 15px;
+      border-color: transparent transparent transparent #007bff;
+      z-index: 2; }
+  /* line 50, /Users/Chris/Development/crocus/public/css/style.scss */
+  .breadcrumbs .size-label {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 20px; }
 
-/* line 15, /Users/Chris/Development/crocus/public/css/style.scss */
+/* line 57, /Users/Chris/Development/crocus/public/css/style.scss */
+main {
+  position: relative; }
+  /* line 59, /Users/Chris/Development/crocus/public/css/style.scss */
+  main canvas {
+    position: absolute; }
+  /* line 62, /Users/Chris/Development/crocus/public/css/style.scss */
+  main svg {
+    position: absolute;
+    display: block;
+    margin: 0px auto; }
+
+/* line 69, /Users/Chris/Development/crocus/public/css/style.scss */
 path {
   stroke: #fff;
-  fill-rule: evenodd; }
+  fill-rule: evenodd;
+  fill: transparent; }
+  /* line 74, /Users/Chris/Development/crocus/public/css/style.scss */
+  .highlightable path.highlight {
+    fill: rgba(255, 255, 255, 0.5); }
 
 /*# sourceMappingURL=style.css.map */

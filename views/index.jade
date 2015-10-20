@@ -1,6 +1,17 @@
 extends layout
 
 block content
+  header
+    h1 Crocus
+    form#pathForm(name='pathForm')
+      input#rootPath(type='search', value='/Users/Chris/Development/crocus')
+      button Search
+    .breadcrumbs
+      
+  main
+    canvas
+    svg.svg-mask
+    
   
   script(src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js')
   script(src='/js/bytes.js')

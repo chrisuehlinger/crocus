@@ -4,7 +4,7 @@ var router = express.Router();
 /* GET home page. */
 
 router.get('/', function(req, res) {
-  res.render('index', { title: 'File System Graph' });
+  res.render('index', { title: 'crocus' });
 });
 
 module.exports = router;
