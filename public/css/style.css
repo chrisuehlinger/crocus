@@ -11,12 +11,12 @@ header {
   position: fixed;
   top: 0;
   z-index: 100; }
-  /* line 14, /Users/Chris/Development/crocus/public/css/style.scss */
+  /* line 13, /Users/Chris/Development/crocus/public/css/style.scss */
   header nav {
     text-align: center;
     display: flex; }
 
-/* line 21, /Users/Chris/Development/crocus/public/css/style.scss */
+/* line 19, /Users/Chris/Development/crocus/public/css/style.scss */
 h1 {
   font-family: 'Pacifico', sans-serif;
   font-size: 48px;
@@ -24,99 +24,110 @@ h1 {
   color: #A100FF;
   vertical-align: middle; }
 
-/* line 29, /Users/Chris/Development/crocus/public/css/style.scss */
+/* line 27, /Users/Chris/Development/crocus/public/css/style.scss */
 .twitter-typeahead {
   flex-grow: 5; }
-  /* line 31, /Users/Chris/Development/crocus/public/css/style.scss */
+  /* line 29, /Users/Chris/Development/crocus/public/css/style.scss */
   .twitter-typeahead .tt-menu {
     text-align: left;
     border: 1px solid black;
     font-size: 20px; }
-    /* line 35, /Users/Chris/Development/crocus/public/css/style.scss */
+    /* line 33, /Users/Chris/Development/crocus/public/css/style.scss */
     .twitter-typeahead .tt-menu .tt-suggestion {
       padding: 5px; }
-      /* line 37, /Users/Chris/Development/crocus/public/css/style.scss */
+      /* line 35, /Users/Chris/Development/crocus/public/css/style.scss */
       .twitter-typeahead .tt-menu .tt-suggestion.tt-cursor {
         background: #ddd; }
 
-/* line 44, /Users/Chris/Development/crocus/public/css/style.scss */
+/* line 42, /Users/Chris/Development/crocus/public/css/style.scss */
 #pathForm {
   display: flex;
   align-items: center;
   flex-grow: 5;
   margin-top: 20px; }
-  /* line 49, /Users/Chris/Development/crocus/public/css/style.scss */
+  /* line 47, /Users/Chris/Development/crocus/public/css/style.scss */
   #pathForm input {
     width: 100%;
     font-size: 20px; }
-  /* line 53, /Users/Chris/Development/crocus/public/css/style.scss */
+  /* line 51, /Users/Chris/Development/crocus/public/css/style.scss */
   #pathForm button {
     margin: 10px;
     padding: 5px;
     border-radius: 5px; }
 
-/* line 60, /Users/Chris/Development/crocus/public/css/style.scss */
+/* line 58, /Users/Chris/Development/crocus/public/css/style.scss */
 .breadcrumbs {
   margin-top: 0px; }
-  /* line 62, /Users/Chris/Development/crocus/public/css/style.scss */
-  .breadcrumbs .crumb {
+  /* line 60, /Users/Chris/Development/crocus/public/css/style.scss */
+  .breadcrumbs .crumb-wrapper {
     display: inline-block;
-    vertical-align: middle;
-    background: #007bff;
-    color: #fff;
-    height: 20px;
-    padding: 5px;
-    padding-left: 20px;
-    margin: 5px 2px;
-    position: relative; }
-    /* line 72, /Users/Chris/Development/crocus/public/css/style.scss */
-    .breadcrumbs .crumb:before {
-      position: absolute;
-      top: 0;
-      left: 0px;
-      content: '';
-      width: 0;
-      height: 0;
-      border-style: solid;
-      border-width: 15px 0 15px 15px;
-      border-color: transparent transparent transparent #fff; }
-    /* line 83, /Users/Chris/Development/crocus/public/css/style.scss */
-    .breadcrumbs .crumb:after {
-      position: absolute;
-      top: 0;
-      right: -15px;
-      content: '';
-      width: 0;
-      height: 0;
-      border-style: solid;
-      border-width: 15px 0 15px 15px;
-      border-color: transparent transparent transparent #007bff;
-      z-index: 2; }
-  /* line 96, /Users/Chris/Development/crocus/public/css/style.scss */
+    vertical-align: middle; }
+    /* line 63, /Users/Chris/Development/crocus/public/css/style.scss */
+    .breadcrumbs .crumb-wrapper .crumb {
+      display: inline-block;
+      background: #007bff;
+      color: #fff;
+      height: 20px;
+      padding: 5px;
+      padding-left: 20px;
+      margin: 5px 2px;
+      position: relative; }
+      /* line 72, /Users/Chris/Development/crocus/public/css/style.scss */
+      .breadcrumbs .crumb-wrapper .crumb:before {
+        position: absolute;
+        top: 0;
+        left: 0px;
+        content: '';
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 15px 0 15px 15px;
+        border-color: transparent transparent transparent #ddd; }
+      /* line 83, /Users/Chris/Development/crocus/public/css/style.scss */
+      .breadcrumbs .crumb-wrapper .crumb:after {
+        position: absolute;
+        top: 0;
+        right: -15px;
+        content: '';
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 15px 0 15px 15px;
+        border-color: transparent transparent transparent #007bff;
+        z-index: 2; }
+  /* line 97, /Users/Chris/Development/crocus/public/css/style.scss */
   .breadcrumbs .size-label {
     display: inline-block;
     vertical-align: middle;
     margin-left: 20px; }
 
-/* line 103, /Users/Chris/Development/crocus/public/css/style.scss */
+/* line 104, /Users/Chris/Development/crocus/public/css/style.scss */
 main {
   position: relative;
   margin-top: 200px; }
-  /* line 106, /Users/Chris/Development/crocus/public/css/style.scss */
+  /* line 107, /Users/Chris/Development/crocus/public/css/style.scss */
+  main .error-message {
+    background: #ddd;
+    font-size: 24px;
+    font-family: Helvetica, sans-serif;
+    padding: 30px;
+    margin: 30px;
+    border-radius: 10px; }
+  /* line 115, /Users/Chris/Development/crocus/public/css/style.scss */
   main canvas {
     position: absolute; }
-  /* line 109, /Users/Chris/Development/crocus/public/css/style.scss */
+  /* line 118, /Users/Chris/Development/crocus/public/css/style.scss */
   main svg {
     position: absolute;
     display: block;
     margin: 0px auto; }
 
-/* line 116, /Users/Chris/Development/crocus/public/css/style.scss */
+/* line 125, /Users/Chris/Development/crocus/public/css/style.scss */
 path {
   stroke: #fff;
   fill-rule: evenodd;
   fill: transparent; }
-  /* line 120, /Users/Chris/Development/crocus/public/css/style.scss */
+  /* line 129, /Users/Chris/Development/crocus/public/css/style.scss */
   .highlightable path.highlight {
     fill: rgba(255, 255, 255, 0.5); }
 

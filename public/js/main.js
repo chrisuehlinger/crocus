@@ -83,7 +83,9 @@ update(d3.select('#rootPath')[0][0].value);
 
 function update(rootPath) {
     d3.json("/directory/tree?root=" + rootPath, function (error, root) {
-        if (error) throw error;
+        $('.error-message').remove();
+        if (error) return handleError(error);
+        
 
         svg.selectAll("path").remove();
         var path = svg.selectAll("path")
@@ -160,23 +162,26 @@ function update(rootPath) {
 function breadcrumbRender(highlighted) {
     console.log(highlighted);
     var crumbs = d3.select('.breadcrumbs')
-        .selectAll('.crumb')
+        .selectAll('.crumb-wrapper')
         .data(highlighted);
 
     crumbs
-        .enter().append('div')
+        .enter()
+        .append('div')
+        .attr('class', 'crumb-wrapper')
+        .append('div')
         .attr('class', 'crumb');
 
     crumbs.exit().remove();
 
-    crumbs
+    crumbs.selectAll('.crumb')
         .text(function (d) {
             return d.name;
         });
 
     var finalSize = bytes(highlighted[highlighted.length - 1].size);
     d3.select('.breadcrumbs .size-label').remove();
-    d3.select('.breadcrumbs')
+    d3.select('.breadcrumbs .crumb-wrapper:last-of-type')
         .append('div')
         .attr('class', 'size-label')
         .text(finalSize);
@@ -219,18 +224,19 @@ $('#rootPath').typeahead({
     async: true,
     source: function (query, syncResults, asyncResults) {
         d3.json('/directory/autocomplete?root=' + query, function (error, response) {
-            if (error) throw error;
+            if (error) return handleError(error);
 
             asyncResults(response);
         });
     }
 });
-$(window).scroll(function () {
-    if ($(this).scrollTop() > 1) {
-        $('header').addClass("sticky");
-    } else {
-        $('header').removeClass("sticky");
-    }
-});
 
-//$('#rootPath').typeahead('open');
+function handleError(error){
+    svg.selectAll('path').remove();
+    ctx.clearRect(-width, -height, 2 * width, 2 * height);
+    var $errorMessage = $('<div class="error-message"></div>');
+    console.log(error);
+    $errorMessage.html('Sorry, crocus has encountered an error. Make sure crocus is still running in the command line and try refreshing the page. If this error persists, please leave a detailed bug report on <a href="https://github.com/chrisuehlinger/crocus/issues">Github Issues</a>.');
+    
+    $('main').append($errorMessage);
+}
