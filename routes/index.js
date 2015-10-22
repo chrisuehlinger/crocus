@@ -3,8 +3,11 @@ var router = express.Router();
 
 /* GET home page. */
 
-router.get('/', function(req, res) {
-  res.render('index', { title: 'crocus' });
+router.get('/', function (req, res) {
+    res.render('index', {
+        title: 'crocus',
+        currentDirectory: process.cwd()
+    });
 });
 
 module.exports = router;

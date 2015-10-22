@@ -64,13 +64,14 @@ router.get('/tree', function (req, res) {
 router.get('/autocomplete', function (req, res) {
     var root = req.query.root;
     var basename = '';
+    
     if (root[root.length - 1] !== path.sep) {
         basename = path.basename(root);
         root = path.dirname(root);
     } else {
         root = root.slice(0, -1);
     }
-    console.log(root);
+    
     fs.list(root)
         .then(function (files) {
             var promises = [];
