@@ -51,18 +51,19 @@ h1 {
     font-size: 20px; }
   /* line 51, /Users/Chris/Development/crocus/public/css/style.scss */
   #pathForm button {
+    vertical-align: middle;
     margin: 10px;
     padding: 5px;
     border-radius: 5px; }
 
-/* line 58, /Users/Chris/Development/crocus/public/css/style.scss */
+/* line 59, /Users/Chris/Development/crocus/public/css/style.scss */
 .breadcrumbs {
   margin-top: 0px; }
-  /* line 60, /Users/Chris/Development/crocus/public/css/style.scss */
+  /* line 61, /Users/Chris/Development/crocus/public/css/style.scss */
   .breadcrumbs .crumb-wrapper {
     display: inline-block;
     vertical-align: middle; }
-    /* line 63, /Users/Chris/Development/crocus/public/css/style.scss */
+    /* line 64, /Users/Chris/Development/crocus/public/css/style.scss */
     .breadcrumbs .crumb-wrapper .crumb {
       display: inline-block;
       background: #007bff;
@@ -72,7 +73,7 @@ h1 {
       padding-left: 20px;
       margin: 5px 2px;
       position: relative; }
-      /* line 72, /Users/Chris/Development/crocus/public/css/style.scss */
+      /* line 73, /Users/Chris/Development/crocus/public/css/style.scss */
       .breadcrumbs .crumb-wrapper .crumb:before {
         position: absolute;
         top: 0;
@@ -83,7 +84,7 @@ h1 {
         border-style: solid;
         border-width: 15px 0 15px 15px;
         border-color: transparent transparent transparent #ddd; }
-      /* line 83, /Users/Chris/Development/crocus/public/css/style.scss */
+      /* line 84, /Users/Chris/Development/crocus/public/css/style.scss */
       .breadcrumbs .crumb-wrapper .crumb:after {
         position: absolute;
         top: 0;
@@ -95,17 +96,17 @@ h1 {
         border-width: 15px 0 15px 15px;
         border-color: transparent transparent transparent #007bff;
         z-index: 2; }
-  /* line 97, /Users/Chris/Development/crocus/public/css/style.scss */
+  /* line 98, /Users/Chris/Development/crocus/public/css/style.scss */
   .breadcrumbs .size-label {
     display: inline-block;
     vertical-align: middle;
     margin-left: 20px; }
 
-/* line 104, /Users/Chris/Development/crocus/public/css/style.scss */
+/* line 105, /Users/Chris/Development/crocus/public/css/style.scss */
 main {
   position: relative;
   margin-top: 200px; }
-  /* line 107, /Users/Chris/Development/crocus/public/css/style.scss */
+  /* line 108, /Users/Chris/Development/crocus/public/css/style.scss */
   main .error-message {
     background: #ddd;
     font-size: 24px;
@@ -113,21 +114,21 @@ main {
     padding: 30px;
     margin: 30px;
     border-radius: 10px; }
-  /* line 115, /Users/Chris/Development/crocus/public/css/style.scss */
+  /* line 116, /Users/Chris/Development/crocus/public/css/style.scss */
   main canvas {
     position: absolute; }
-  /* line 118, /Users/Chris/Development/crocus/public/css/style.scss */
+  /* line 119, /Users/Chris/Development/crocus/public/css/style.scss */
   main svg {
     position: absolute;
     display: block;
     margin: 0px auto; }
 
-/* line 125, /Users/Chris/Development/crocus/public/css/style.scss */
+/* line 126, /Users/Chris/Development/crocus/public/css/style.scss */
 path {
   stroke: #fff;
   fill-rule: evenodd;
   fill: transparent; }
-  /* line 129, /Users/Chris/Development/crocus/public/css/style.scss */
+  /* line 130, /Users/Chris/Development/crocus/public/css/style.scss */
   .highlightable path.highlight {
     fill: rgba(255, 255, 255, 0.5); }
 
