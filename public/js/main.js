@@ -7,18 +7,13 @@ var sizeThreshold = 0.01;
 var x = d3.scale.linear()
     .range([0, 2 * Math.PI]);
 
-var y = d3.scale.sqrt()
-    .range([0, radius]);
+var y = d3.scale.sqrt();
 
 var color = d3.scale.category20c();
 
-var canvas = d3.select("canvas")
-    .attr("width", width)
-    .attr("height", height);
-
+var canvas = d3.select("canvas");
 
 var ctx = canvas.node().getContext('2d');
-ctx.translate(width / 2, (height / 2 + 10));
 
 var devicePixelRatio = window.devicePixelRatio || 1,
     backingStoreRatio = ctx.webkitBackingStorePixelRatio ||
@@ -28,24 +23,6 @@ var devicePixelRatio = window.devicePixelRatio || 1,
     ctx.backingStorePixelRatio || 1,
     ratio = devicePixelRatio / backingStoreRatio;
 
-if (devicePixelRatio !== backingStoreRatio) {
-
-    canvas.node().width = width * ratio;
-    canvas.node().height = height * ratio;
-
-    canvas
-        .style("width", width + 'px')
-        .style("height", height + 'px');
-
-    // now scale the context to counter
-    // the fact that we've manually scaled
-    // our canvas element
-    ctx.scale(ratio, ratio);
-
-}
-ctx.translate(width / 2, (height / 2 + 10));
-
-
 
 var svg = d3.select("svg.svg-mask")
     .attr("width", width)
@@ -53,6 +30,44 @@ var svg = d3.select("svg.svg-mask")
     .append("g")
     .attr("transform", "translate(" + width / 2 + "," + (height / 2 + 10) + ")")
     .attr('class', 'highlightable');
+
+resize();
+
+function resize() {
+    width = window.innerWidth;
+    height = window.innerHeight;
+    radius = Math.min(width, height) / 2;
+
+    y.range([0, radius]);
+
+    d3.select("svg.svg-mask")
+        .attr("width", width)
+        .attr("height", height)
+        .select('g')
+        .attr("transform", "translate(" + width / 2 + "," + (height / 2 + 10) + ")");
+
+    canvas
+        .attr("width", width)
+        .attr("height", height);
+
+    if (devicePixelRatio !== backingStoreRatio) {
+
+        canvas.node().width = width * ratio;
+        canvas.node().height = height * ratio;
+
+        canvas
+            .style("width", width + 'px')
+            .style("height", height + 'px');
+
+        // now scale the context to counter
+        // the fact that we've manually scaled
+        // our canvas element
+        ctx.scale(ratio, ratio);
+
+    }
+    ctx.translate(width / 2, (height / 2 + 10));
+
+}
 
 var partition = d3.layout.partition()
     .value(function (d) {
@@ -84,8 +99,15 @@ update(d3.select('#rootPath')[0][0].value);
 function update(rootPath) {
     d3.json("/directory/tree?root=" + rootPath, function (error, root) {
         $('.error-message').remove();
+        $(window).off('resize');
         if (error) return handleError(error);
+
         
+        $(window).on('resize', function(){
+            resize();
+            path.attr('d', arc);
+            canvasRender(partition.nodes(root), highlighted);
+        }); 
 
         svg.selectAll("path").remove();
         var path = svg.selectAll("path")
@@ -231,12 +253,12 @@ $('#rootPath').typeahead({
     }
 });
 
-function handleError(error){
+function handleError(error) {
     svg.selectAll('path').remove();
     ctx.clearRect(-width, -height, 2 * width, 2 * height);
     var $errorMessage = $('<div class="error-message"></div>');
     console.log(error);
     $errorMessage.html('Sorry, crocus has encountered an error. Make sure crocus is still running in the command line and try refreshing the page. If this error persists, please leave a detailed bug report on <a href="https://github.com/chrisuehlinger/crocus/issues">Github Issues</a>.');
-    
+
     $('main').append($errorMessage);
 }
