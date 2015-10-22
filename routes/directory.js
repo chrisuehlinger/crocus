@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var fs = require('q-io/fs');
 var q = require('q');
+var path = require('path');
 
 /* GET directory tree listing. */
 router.get('/tree', function (req, res) {
@@ -12,7 +13,7 @@ router.get('/tree', function (req, res) {
             .then(function (files) {
                 var promises = [];
                 files.forEach(function (file) {
-                    var currentFile = currentPath + '/' + file;
+                    var currentFile = currentPath + path.sep + file;
                     var promise = fs.stat(currentFile)
                         .then(function (stat) {
                             if (stat.isFile()) {
@@ -47,7 +48,7 @@ router.get('/tree', function (req, res) {
         children.forEach(function (child) {
             totalSize += child.size;
         });
-        
+
         var tree = {
             name: root,
             fullPath: root,
@@ -60,8 +61,52 @@ router.get('/tree', function (req, res) {
 
 });
 
-router.get('/autocomplete', function(req, res){
-  
+router.get('/autocomplete', function (req, res) {
+    var root = req.query.root;
+    var basename = '';
+    if(root[root.length-1] !== path.sep) {
+        basename = path.basename(root);
+        root = path.dirname(root);
+    } else {
+        root = root.slice(0,-1);
+    }
+    
+    fs.list(root)
+        .then(function (files) {
+            var promises = [];
+            files.forEach(function (file) {
+                console.log(file);
+                var fullPath = root + path.sep + file
+                var promise = fs.stat(fullPath)
+                    .then(function (stat) {
+                        console.log(stat);
+                        return {
+                            name: fullPath,
+                            isDirectory: stat.isDirectory()
+                        };
+                    });
+
+                promises.push(promise);
+            });
+
+            return q.all(promises).then(function (files) {
+                return files
+                    .filter(function (file) {
+                        return file.isDirectory;
+                    })
+                    .map(function (file) {
+                        return file.name;
+                    });
+            });
+        })
+        .then(function (routes) {
+            routes = routes.filter(function(route){ return path.basename(route).indexOf(basename) !== -1;});
+            res.send('<pre><code>' + JSON.stringify(routes, null, '  ') + '</code></pre>');
+            //            res.send(routes);
+        })
+        .catch(function(){
+            res.send('(null)');
+        });
 });
 
 module.exports = router;

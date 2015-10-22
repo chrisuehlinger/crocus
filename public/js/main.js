@@ -1,5 +1,5 @@
 var width = window.innerWidth,
-  height = window.innerWidth,
+  height = window.innerHeight,
   radius = Math.min(width, height) / 2;
 
 var sizeThreshold = 0.01;

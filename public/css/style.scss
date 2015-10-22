@@ -6,30 +6,33 @@ body {
 }
 
 header{
-  max-width: 400px;
-  margin: 0 auto;
   text-align: center;
+  display: flex;
 }
 
 h1 {
   font-family: 'Pacifico', sans-serif;
-  font-size: 72px;
-  margin: 10px 0;    
+  font-size:48px;
+  margin: 0 20px;
   color: #A100FF;
+  vertical-align: middle;
 }
 
 #pathForm {
   display: flex;
   align-items: center;
+  flex-grow: 5;
+  margin-top: 20px;
   
   input {
-    flex-grow: 2;
-    
+    flex-grow: 5;
+    font-size: 20px;
   }
   
   button {
-    margin-left: 10px;
+    margin: 10px;
     padding: 5px;
+    border-radius: 5px;
   }
   
 }
