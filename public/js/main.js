@@ -210,3 +210,18 @@ function arcTween(d) {
     };
   };
 }
+
+$('#rootPath').typeahead({
+        highlight: true
+    }, {
+    async: true,
+    source: function(query, syncResults, asyncResults){
+        d3.json('/directory/autocomplete?root=' + query, function(error, response){
+            if(error) throw error;
+    
+            asyncResults(response);
+        });
+    }
+});
+
+//$('#rootPath').typeahead('open');

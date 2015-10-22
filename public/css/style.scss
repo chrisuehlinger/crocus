@@ -1,109 +1,115 @@
 @import url(https://fonts.googleapis.com/css?family=Pacifico);
-
 body {
-  margin: 0;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    margin: 0;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-header{
-  text-align: center;
-  display: flex;
+header {
+    text-align: center;
+    display: flex;
 }
 
 h1 {
-  font-family: 'Pacifico', sans-serif;
-  font-size:48px;
-  margin: 0 20px;
-  color: #A100FF;
-  vertical-align: middle;
+    font-family: 'Pacifico', sans-serif;
+    font-size: 48px;
+    margin: 0 20px;
+    color: #A100FF;
+    vertical-align: middle;
+}
+
+.twitter-typeahead {
+    flex-grow: 5;
+    .tt-menu {
+        text-align: left;
+        border: 1px solid black;
+        font-size: 20px;
+        .tt-suggestion {
+            padding: 5px;
+            
+            &.tt-cursor {
+                background: #ddd;
+            }
+        }
+    }
 }
 
 #pathForm {
-  display: flex;
-  align-items: center;
-  flex-grow: 5;
-  margin-top: 20px;
-  
-  input {
+    display: flex;
+    align-items: center;
     flex-grow: 5;
-    font-size: 20px;
-  }
-  
-  button {
-    margin: 10px;
-    padding: 5px;
-    border-radius: 5px;
-  }
-  
+    margin-top: 20px;
+    input {
+        width: 100%;
+        font-size: 20px;
+    }
+    button {
+        margin: 10px;
+        padding: 5px;
+        border-radius: 5px;
+    }
 }
 
 .breadcrumbs {
-  margin-top: 20px;
-  min-height: 150px;
-  
-  .crumb {
-    display: inline-block;
-    vertical-align: middle;
-    background: #007bff;
-    color: #fff;
-    height: 20px;
-    padding: 5px;
-    padding-left: 20px;
-    margin: 5px 2px;
-    position: relative;
-    
-    &:before {
-      position: absolute;
-      top: 0;
-      left: 0px;
-      content: '';
-      width: 0;
-      height: 0;
-      border-style: solid;
-      border-width: 15px 0 15px 15px;
-      border-color: transparent transparent transparent #fff;
-      
+    margin-top: 20px;
+    min-height: 150px;
+    .crumb {
+        display: inline-block;
+        vertical-align: middle;
+        background: #007bff;
+        color: #fff;
+        height: 20px;
+        padding: 5px;
+        padding-left: 20px;
+        margin: 5px 2px;
+        position: relative;
+        &:before {
+            position: absolute;
+            top: 0;
+            left: 0px;
+            content: '';
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 15px 0 15px 15px;
+            border-color: transparent transparent transparent #fff;
+        }
+        &:after {
+            position: absolute;
+            top: 0;
+            right: -15px;
+            content: '';
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 15px 0 15px 15px;
+            border-color: transparent transparent transparent #007bff;
+            z-index: 2;
+        }
     }
-    
-    &:after {
-      position: absolute;
-      top: 0;
-      right: -15px;
-      content: '';
-      width: 0;
-      height: 0;
-      border-style: solid;
-      border-width: 15px 0 15px 15px;
-      border-color: transparent transparent transparent #007bff;
-      z-index: 2;
+    .size-label {
+        display: inline-block;
+        vertical-align: middle;
+        margin-left: 20px;
     }
-  }
-  
-  .size-label {
-    display: inline-block;
-    vertical-align: middle;
-    margin-left: 20px;
-  }
 }
 
 main {
-  position: relative;
-  canvas {
-    position: absolute;
-  }
-  svg {
-    position: absolute;
-    display: block;
-    margin: 0px auto;
-  }
+    position: relative;
+    canvas {
+        position: absolute;
+    }
+    svg {
+        position: absolute;
+        display: block;
+        margin: 0px auto;
+    }
 }
 
 path {
-  stroke: #fff;
-  fill-rule: evenodd;
-  fill: transparent;
-  
-  .highlightable &.highlight {
-    fill: rgba(255, 255, 255, 0.5);
-  }
+    stroke: #fff;
+    fill-rule: evenodd;
+    fill: transparent;
+    .highlightable &.highlight {
+        fill: rgba(255, 255, 255, 0.5);
+    }
 }

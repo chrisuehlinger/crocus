@@ -64,13 +64,13 @@ router.get('/tree', function (req, res) {
 router.get('/autocomplete', function (req, res) {
     var root = req.query.root;
     var basename = '';
-    if(root[root.length-1] !== path.sep) {
+    if (root[root.length - 1] !== path.sep) {
         basename = path.basename(root);
         root = path.dirname(root);
     } else {
-        root = root.slice(0,-1);
+        root = root.slice(0, -1);
     }
-    
+    console.log(root);
     fs.list(root)
         .then(function (files) {
             var promises = [];
@@ -79,7 +79,7 @@ router.get('/autocomplete', function (req, res) {
                 var fullPath = root + path.sep + file
                 var promise = fs.stat(fullPath)
                     .then(function (stat) {
-                        console.log(stat);
+                        //                        console.log(stat);
                         return {
                             name: fullPath,
                             isDirectory: stat.isDirectory()
@@ -89,23 +89,33 @@ router.get('/autocomplete', function (req, res) {
                 promises.push(promise);
             });
 
-            return q.all(promises).then(function (files) {
-                return files
-                    .filter(function (file) {
-                        return file.isDirectory;
-                    })
-                    .map(function (file) {
-                        return file.name;
+            return q.allSettled(promises)
+                .then(function (results) {
+                    var files = [];
+                    results.forEach(function (result) {
+                        if (result.state === "fulfilled") {
+                            files.push(result.value);
+                        }
                     });
-            });
+                    return files
+                        .filter(function (file) {
+                            return file.isDirectory;
+                        })
+                        .map(function (file) {
+                            return file.name;
+                        });
+                });
         })
         .then(function (routes) {
-            routes = routes.filter(function(route){ return path.basename(route).indexOf(basename) !== -1;});
-            res.send('<pre><code>' + JSON.stringify(routes, null, '  ') + '</code></pre>');
-            //            res.send(routes);
+            routes = routes.filter(function (route) {
+                return path.basename(route).indexOf(basename) === 0;
+            });
+            //            res.send('<pre><code>' + JSON.stringify(routes, null, '  ') + '</code></pre>');
+            res.send(routes);
         })
-        .catch(function(){
-            res.send('(null)');
+        .catch(function (error) {
+            console.log(error);
+            res.send([]);
         });
 });
 

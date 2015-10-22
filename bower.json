@@ -1,9 +1,13 @@
 {
-  "name": "file-system-graph",
-  "version": "0.0.1",
+  "name": "crocus",
+  "version": "0.1.2",
   "ignore": [
     "**/.*",
     "node_modules",
     "components"
-  ]
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "typeahead.js": "~0.11.1"
+  }
 }

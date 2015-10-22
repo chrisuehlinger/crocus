@@ -4,7 +4,7 @@ block content
   header
     h1 Crocus
     form#pathForm(name='pathForm')
-      input#rootPath(type='search', value='/Users/Chris/Development/crocus')
+      input#rootPath(type='text', value='/Users/Chris/Development/crocus')
       button Search
   
   .breadcrumbs
@@ -14,6 +14,8 @@ block content
     svg.svg-mask
     
   
+  script(src='components/jquery/dist/jquery.js')
+  script(src='components/typeahead.js/dist/typeahead.jquery.js')
   script(src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js')
   script(src='/js/bytes.js')
   script(src='/js/main.js')
