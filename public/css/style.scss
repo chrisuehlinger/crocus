@@ -5,9 +5,18 @@ body {
 }
 
 header {
-    text-align: center;
-    display: flex;
+    background: #ddd;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    
+    nav {
+        text-align: center;
+        display: flex;
+    }
 }
+
 
 h1 {
     font-family: 'Pacifico', sans-serif;
@@ -25,7 +34,6 @@ h1 {
         font-size: 20px;
         .tt-suggestion {
             padding: 5px;
-            
             &.tt-cursor {
                 background: #ddd;
             }
@@ -50,8 +58,7 @@ h1 {
 }
 
 .breadcrumbs {
-    margin-top: 20px;
-    min-height: 150px;
+    margin-top: 0px;
     .crumb {
         display: inline-block;
         vertical-align: middle;
@@ -95,6 +102,7 @@ h1 {
 
 main {
     position: relative;
+    margin-top: 200px;
     canvas {
         position: absolute;
     }

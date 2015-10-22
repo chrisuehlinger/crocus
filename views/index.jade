@@ -2,12 +2,13 @@ extends layout
 
 block content
   header
-    h1 Crocus
-    form#pathForm(name='pathForm')
-      input#rootPath(type='text', value=currentDirectory)
-      button Search
+    nav
+      h1 Crocus
+      form#pathForm(name='pathForm')
+        input#rootPath(type='text', value=currentDirectory)
+        button Search
   
-  .breadcrumbs
+    .breadcrumbs
       
   main
     canvas
