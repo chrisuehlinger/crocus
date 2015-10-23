@@ -96,7 +96,9 @@ d3.select('#pathForm')
 update(d3.select('#rootPath')[0][0].value);
 
 function update(rootPath) {
+    createLoadingIndicator();
     d3.json("/directory/tree?root=" + rootPath, function (error, root) {
+        removeLoadingIndicator();
         $('.error-message').remove();
         $(window).off('resize');
         if (error) return handleError(error);
@@ -268,4 +270,15 @@ function handleError(error) {
     $errorMessage.html('Sorry, crocus has encountered an error. Make sure crocus is still running in the command line and try refreshing the page. If this error persists, please leave a detailed bug report on <a href="https://github.com/chrisuehlinger/crocus/issues">Github Issues</a>.');
 
     $('main').append($errorMessage);
+}
+
+function createLoadingIndicator() {
+    var $loadingIndicator = $('<div class="loading-indicator"><i class="fa fa-refresh fa-5x fa-spin"></i></div>');
+    $loadingIndicator.hide();
+    $('body').append($loadingIndicator);
+    $loadingIndicator.fadeIn(1000);
+}
+
+function removeLoadingIndicator() {
+    $('.loading-indicator').fadeOut(2000, function(){});
 }

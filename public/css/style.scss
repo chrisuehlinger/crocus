@@ -161,3 +161,26 @@ path {
         fill: rgba(255, 255, 255, 0.5);
     }
 }
+
+.loading-indicator {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 101;
+    
+    i {
+        display: flex;
+    justify-content: center;
+    align-items: center;
+        height: 200px;
+        width: 200px;
+        text-align: center;
+        background: rgba(150, 150, 150, 0.25);
+        border-radius: 200px;
+    }
+}
