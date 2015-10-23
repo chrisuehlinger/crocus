@@ -2,8 +2,6 @@ var width = window.innerWidth,
     height = window.innerHeight,
     radius = Math.min(width, height) / 2;
 
-var sizeThreshold = 0.01;
-
 var x = d3.scale.linear()
     .range([0, 2 * Math.PI]);
 
@@ -50,6 +48,7 @@ function resize() {
         .attr("width", width)
         .attr("height", height);
 
+    ctx.restore();
     if (devicePixelRatio !== backingStoreRatio) {
 
         canvas.node().width = width * ratio;
@@ -102,12 +101,12 @@ function update(rootPath) {
         $(window).off('resize');
         if (error) return handleError(error);
 
-        
-        $(window).on('resize', function(){
+
+        $(window).on('resize', function () {
             resize();
             path.attr('d', arc);
             canvasRender(partition.nodes(root), highlighted);
-        }); 
+        });
 
         svg.selectAll("path").remove();
         var path = svg.selectAll("path")
@@ -118,6 +117,7 @@ function update(rootPath) {
             .style("stroke", "transparent")
             .on("click", click)
             .on("mouseover", mouseover)
+//            .on('mouseout', mouseout)
             .append('title')
             .text(function (d) {
                 return d.name + ' ' + bytes(d.size);
@@ -133,6 +133,19 @@ function update(rootPath) {
             highlightChain(d);
         }
 
+        function mouseout() {
+
+            highlighted = [];
+            partition.nodes(root).forEach(function (d) {
+                d.highlighted = false;
+            });
+            path.attr("class", function (d) {
+                return d.highlighted && 'highlight';
+            });
+            breadcrumbRender(highlighted);
+            canvasRender(partition.nodes(root), highlighted);
+        }
+
         function highlightChain(d) {
             highlighted.push(d);
             d.highlighted = true;
@@ -142,34 +155,27 @@ function update(rootPath) {
                 });
                 highlighted.reverse();
                 breadcrumbRender(highlighted);
-                canvasRender(partition.nodes(root).filter(function (d) {
-                    return x(d.dx) > sizeThreshold;
-                }), highlighted);
+                canvasRender(partition.nodes(root), highlighted);
             } else {
                 highlightChain(d.parent);
             }
 
         }
 
-        canvasRender(partition.nodes(root).filter(function (d) {
-            return x(d.dx) > sizeThreshold;
-        }), highlighted);
+        canvasRender(partition.nodes(root), highlighted);
 
         function click(d) {
             svg.attr('class', '');
             d3.transition()
                 .duration(750)
-                .tween("swivel", function () {
+                .tween('', function () {
                     var xd = d3.interpolate(x.domain(), [d.x, d.x + d.dx]),
                         yd = d3.interpolate(y.domain(), [d.y, 1]),
                         yr = d3.interpolate(y.range(), [d.y ? 20 : 0, radius]);
                     return function (t) {
                         x.domain(xd(t));
                         y.domain(yd(t)).range(yr(t));
-                        var nodes = partition.nodes(root)
-                            .filter(function (d) {
-                                return x(d.dx) > sizeThreshold;
-                            });
+                        var nodes = partition.nodes(root);
                         canvasRender(nodes, highlighted);
                     };
                 })
@@ -244,6 +250,7 @@ $('#rootPath').typeahead({
     highlight: true
 }, {
     async: true,
+    limit: Infinity,
     source: function (query, syncResults, asyncResults) {
         d3.json('/directory/autocomplete?root=' + query, function (error, response) {
             if (error) return handleError(error);
@@ -251,7 +258,7 @@ $('#rootPath').typeahead({
             asyncResults(response);
         });
     }
-});
+}).bind('typeahead:select', update);
 
 function handleError(error) {
     svg.selectAll('path').remove();

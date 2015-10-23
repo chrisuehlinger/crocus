@@ -76,11 +76,9 @@ router.get('/autocomplete', function (req, res) {
         .then(function (files) {
             var promises = [];
             files.forEach(function (file) {
-                console.log(file);
                 var fullPath = root + path.sep + file
                 var promise = fs.stat(fullPath)
                     .then(function (stat) {
-                        //                        console.log(stat);
                         return {
                             name: fullPath,
                             isDirectory: stat.isDirectory()
@@ -115,7 +113,6 @@ router.get('/autocomplete', function (req, res) {
             res.send(routes);
         })
         .catch(function (error) {
-            console.log(error);
             res.send([]);
         });
 });

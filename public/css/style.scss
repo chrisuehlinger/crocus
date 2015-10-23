@@ -1,15 +1,18 @@
 @import url(https://fonts.googleapis.com/css?family=Pacifico);
+$crocusPurple: #A100FF;
+
 body {
     margin: 0;
     font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 header {
-    background: #ddd;
+    background: rgba(200, 200, 200, 0.5);
     width: 100%;
     position: fixed;
     top: 0;
     z-index: 100;
+    box-shadow: 0px 5px 10px 5px rgba(200, 200, 200, 0.5);
     nav {
         text-align: center;
         display: flex;
@@ -20,16 +23,23 @@ h1 {
     font-family: 'Pacifico', sans-serif;
     font-size: 48px;
     margin: 0 20px;
-    color: #A100FF;
+    color: $crocusPurple;
     vertical-align: middle;
 }
 
 .twitter-typeahead {
     flex-grow: 5;
+    margin: 0 5px;
+    z-index: 101;
     .tt-menu {
+        min-width: 100%;
+        background: #fff;
         text-align: left;
         border: 1px solid black;
+        border-radius: 5px;
         font-size: 20px;
+        max-height: 500px;
+        overflow: auto;
         .tt-suggestion {
             padding: 5px;
             &.tt-cursor {
@@ -47,40 +57,59 @@ h1 {
     input {
         width: 100%;
         font-size: 20px;
+        padding: 5px;
+        border: none;
+        box-sizing: border-box;
     }
     button {
         vertical-align: middle;
+        background: #ddd;
+        border: 1px solid #999;
         margin: 10px;
-        padding: 5px;
+        margin-right: 20px;
+        padding: 5px 7px;
         border-radius: 5px;
+        color: $crocusPurple;
     }
 }
 
 .breadcrumbs {
     margin-top: 0px;
+    padding: 0 20px 10px;
     .crumb-wrapper {
-            display: inline-block;
-            vertical-align: middle;
+        display: inline-block;
+        vertical-align: middle;
+        position: relative;
+        margin: 5px 2px;
+            padding-left: 15px;
+        box-sizing: border-box;
+        &:before,
+        &:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            z-index: 100;
+            left: 0px;
+            border-style: solid;
+        }
+        &:before {
+            border-width: 0 15px 15px 0;
+            border-color: transparent $crocusPurple transparent transparent;
+            top: 0;
+        }
+        &:after {
+            border-width: 0 0 15px 15px;
+            border-color: transparent transparent $crocusPurple transparent;
+            bottom: 0;
+        }
         .crumb {
             display: inline-block;
-            background: #007bff;
+            background: $crocusPurple;
             color: #fff;
             height: 20px;
             padding: 5px;
-            padding-left: 20px;
-            margin: 5px 2px;
             position: relative;
-            &:before {
-                position: absolute;
-                top: 0;
-                left: 0px;
-                content: '';
-                width: 0;
-                height: 0;
-                border-style: solid;
-                border-width: 15px 0 15px 15px;
-                border-color: transparent transparent transparent #ddd;
-            }
             &:after {
                 position: absolute;
                 top: 0;
@@ -90,7 +119,7 @@ h1 {
                 height: 0;
                 border-style: solid;
                 border-width: 15px 0 15px 15px;
-                border-color: transparent transparent transparent #007bff;
+                border-color: transparent transparent transparent $crocusPurple;
                 z-index: 2;
             }
         }
@@ -99,6 +128,7 @@ h1 {
         display: inline-block;
         vertical-align: middle;
         margin-left: 20px;
+        font-weight: 700;
     }
 }
 
