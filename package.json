@@ -1,6 +1,6 @@
 {
     "name": "crocus",
-    "version": "0.1.4",
+    "version": "0.1.5",
     "author": "Chris Uehlinger <chris.uehlinger@gmail.com>",
     "scripts": {
         "install": "bower install",
