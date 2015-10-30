@@ -20,7 +20,7 @@ header {
 }
 
 h1 {
-    font-family: 'Pacifico', sans-serif;
+    font-family: 'Pacifico', cursive;
     font-size: 48px;
     margin: 0 20px;
     color: $crocusPurple;
@@ -144,10 +144,12 @@ main {
         border-radius: 10px;
     }
     canvas {
-        position: absolute;
+        //position: absolute;
     }
     svg {
         position: absolute;
+        top: 0;
+        
         display: block;
         margin: 0px auto;
     }

@@ -19,7 +19,7 @@ header {
 
 /* line 22, /Users/Chris/Development/crocus/public/css/style.scss */
 h1 {
-  font-family: 'Pacifico', sans-serif;
+  font-family: 'Pacifico', cursive;
   font-size: 48px;
   margin: 0 20px;
   color: #A100FF;
@@ -142,25 +142,23 @@ main {
     padding: 30px;
     margin: 30px;
     border-radius: 10px; }
-  /* line 146, /Users/Chris/Development/crocus/public/css/style.scss */
-  main canvas {
-    position: absolute; }
   /* line 149, /Users/Chris/Development/crocus/public/css/style.scss */
   main svg {
     position: absolute;
+    top: 0;
     display: block;
     margin: 0px auto; }
 
-/* line 156, /Users/Chris/Development/crocus/public/css/style.scss */
+/* line 158, /Users/Chris/Development/crocus/public/css/style.scss */
 path {
   stroke: #fff;
   fill-rule: evenodd;
   fill: transparent; }
-  /* line 160, /Users/Chris/Development/crocus/public/css/style.scss */
+  /* line 162, /Users/Chris/Development/crocus/public/css/style.scss */
   .highlightable path.highlight {
     fill: rgba(255, 255, 255, 0.5); }
 
-/* line 165, /Users/Chris/Development/crocus/public/css/style.scss */
+/* line 167, /Users/Chris/Development/crocus/public/css/style.scss */
 .loading-indicator {
   position: fixed;
   top: 0;
@@ -171,7 +169,7 @@ path {
   justify-content: center;
   align-items: center;
   z-index: 101; }
-  /* line 176, /Users/Chris/Development/crocus/public/css/style.scss */
+  /* line 178, /Users/Chris/Development/crocus/public/css/style.scss */
   .loading-indicator i {
     display: flex;
     justify-content: center;

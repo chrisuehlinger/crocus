@@ -1,2 +1,75 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:400,300italic,300);
+/* line 2, /Users/Chris/Development/crocus/public/css/landingpage.scss */
+body {
+  font: 16px 'Lato', Helvetica, Arial, sans-serif;
+  color: #222; }
+
+/* line 7, /Users/Chris/Development/crocus/public/css/landingpage.scss */
+article {
+  padding-bottom: 100px; }
+
+/* line 11, /Users/Chris/Development/crocus/public/css/landingpage.scss */
+section {
+  max-width: 600px;
+  margin: 0 auto; }
+
+/* line 16, /Users/Chris/Development/crocus/public/css/landingpage.scss */
+h1 {
+  text-align: center;
+  font-size: 72px; }
+
+/* line 21, /Users/Chris/Development/crocus/public/css/landingpage.scss */
+h2 {
+  color: #A100FF; }
+
+/* line 25, /Users/Chris/Development/crocus/public/css/landingpage.scss */
+.byline {
+  color: #222;
+  font-size: 24px;
+  font-weight: 400;
+  text-align: center;
+  margin: 0; }
+
+/* line 37, /Users/Chris/Development/crocus/public/css/landingpage.scss */
+a,
+a:link,
+a:hover,
+a:active,
+a:visited {
+  color: #A100FF; }
+
+/* line 42, /Users/Chris/Development/crocus/public/css/landingpage.scss */
+p,
+li {
+  line-height: 1.4; }
+  /* line 44, /Users/Chris/Development/crocus/public/css/landingpage.scss */
+  p code,
+  li code {
+    padding: 1px;
+    border-radius: 5px;
+    background: #eee; }
+
+/* line 51, /Users/Chris/Development/crocus/public/css/landingpage.scss */
+blockquote {
+  font-style: italic;
+  font-size: 24px;
+  font-weight: 300;
+  text-align: center; }
+
+/* line 59, /Users/Chris/Development/crocus/public/css/landingpage.scss */
+.demonstration .breadcrumbs {
+  max-width: 600px;
+  margin: 0 auto;
+  height: 150px; }
+
+/* line 64, /Users/Chris/Development/crocus/public/css/landingpage.scss */
+.demonstration main {
+  margin-top: 0px; }
+
+/* line 69, /Users/Chris/Development/crocus/public/css/landingpage.scss */
+pre {
+  padding: 5px;
+  border-radius: 5px;
+  background: #eee; }
 
 /*# sourceMappingURL=landingpage.css.map */

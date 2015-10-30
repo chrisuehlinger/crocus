@@ -16,8 +16,54 @@
 </head>
 
 <body>
+    <a href="https://github.com/chrisuehlinger/crocus"><img style="position: fixed; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
+    <article>
+        <section>
+            <h1 class="title">Crocus</h1>
+            <h2 class="byline">Built by <a href="http://chrisuehlinger.com">Chris Uehlinger</a></h2>
+            <p>When you need to free up space on your hard drive, your OS often does little to help you figure out what's taking up so much space. You may be able to guage the relative size of each file in a directory, but it's hard to get a more comprehensive picture than that.</p>
+            <blockquote>Crocus visualizes how much space each part of your file tree takes up.</blockquote>
+            <p>This comes in handy for a number of common use cases:</p>
+            <ul>
+                <li>Sorting out which artists/albums are blowing up your music library</li>
+                <li>Pruning large dependencies from a project</li>
+                <li>Looking for large, dead weight applications that you don't often use</li>
+            </ul>
+            <p>Hover over an area of the graph to see a breadcrumb of its file path, along with how much space it is taking up. If something seems to be taking up a large amount of space, click on it to zoom in and get a more detailed look.</p>
+        </section>
+        <section>
+            <h2>Demo</h2>
+            <p>Here's Crocus looking at it's own directory: </p>
+        </section>
+        <div class="demonstration">
+            <div class="breadcrumbs"></div>
+            <main>
+                <canvas></canvas>
+                <svg class="svg-mask"></svg>
+            </main>
+        </div>
+        <section>
+            <h2>Usage</h2>
+            <p>Crocus can be downloaded from npm and installed globally:</p>
+            <pre><code>$ npm install -g crocus</code></pre>
+            <p>After that, type <code>crocus</code> in any directory to start a crocus instance, which will be served over <code>localhost:8642</code>. Once you've taken a look around, you can navigate to other directories from within the app, without having to ever go back to the command line.</p>
+        </section>
+        <section>
+            <h2>How it works</h2>
+            <p>Crocus is an express app with one API endpoint and one view. The API endpoint takes a path and returns a recursive data structure describing the file tree below that point. The view takes that data and renders the Sunburst twice. First it renders the sunburst in canvas, which allows for smooth animations. Then it renders an invisible layer on top in SVG, which allows for easier event handling and tooltips. Only the canvas is animated: the SVG simply skips from the beginning state of the animation to the end state with its events disabled until the canvas animation is complete.</p>
+        </section>
+        <section>
+            <h2>Acknowledgements</h2>
+            <p>Crocus was inspired by a few other projects:</p>
+            <ul>
+                <li><code><a href="https://github.com/FredrikNoren/ungit">ungit</a></code>, a fantastic git client I use every day. I liked the idea of a command line tool that exposed its interface as a web app with useful visualizations. There are probably tons of other applications of this idea waiting to be discovered. Like <code>ungit</code>, I may package crocus as an Electron app if there is enough interest.</li>
+                <li><a href="http://bl.ocks.org/mbostock/4348373">Mike Bostock's Zoomable Sunburst demo</a> and <a href="http://bl.ocks.org/kerryrodden/7090426">Kerry Rodden's variant</a> with breadcrumbs. D3 is an awesome tool.</li>
+            </ul>
+        </section>
+    </article>
     <script src="public/components/jquery/dist/jquery.min.js"></script>
     <script src="public/components/d3/d3.min.js"></script>
+    <script src="public/js/bytes.js"></script>
     <script src="public/js/visualization.js"></script>
     <script src="public/js/landingpage.js"></script>
     <script type="text/javascript">
@@ -31,9 +77,10 @@
             ga.async = true;
             ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
             var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(ga, s);
+            //s.parentNode.insertBefore(ga, s);
         })();
     </script>
+    
 </body>
 
 </html>
