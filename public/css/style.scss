@@ -1,6 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Pacifico);
 $crocusPurple: #A100FF;
-
 body {
     margin: 0;
     font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -81,7 +80,7 @@ h1 {
         vertical-align: middle;
         position: relative;
         margin: 5px 2px;
-            padding-left: 15px;
+        padding-left: 15px;
         box-sizing: border-box;
         &:before,
         &:after {
@@ -109,6 +108,7 @@ h1 {
             color: #fff;
             height: 20px;
             padding: 5px;
+            z-index: 100;
             position: relative;
             &:after {
                 position: absolute;
@@ -120,7 +120,7 @@ h1 {
                 border-style: solid;
                 border-width: 15px 0 15px 15px;
                 border-color: transparent transparent transparent $crocusPurple;
-                z-index: 2;
+                z-index: 100;
             }
         }
     }
@@ -149,7 +149,6 @@ main {
     svg {
         position: absolute;
         top: 0;
-        
         display: block;
         margin: 0px auto;
     }
@@ -174,11 +173,10 @@ path {
     justify-content: center;
     align-items: center;
     z-index: 101;
-    
     i {
         display: flex;
-    justify-content: center;
-    align-items: center;
+        justify-content: center;
+        align-items: center;
         height: 200px;
         width: 200px;
         text-align: center;

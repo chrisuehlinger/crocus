@@ -24,17 +24,25 @@ article {
 section {
   max-width: 600px;
   margin: 0 auto; }
+  @media screen and (max-width: 600px) {
+    /* line 22, /Users/Chris/Development/crocus/public/css/landingpage.scss */
+    section {
+      padding: 15px; } }
+  @media screen and (max-width: 400px) {
+    /* line 22, /Users/Chris/Development/crocus/public/css/landingpage.scss */
+    section {
+      padding: 10px; } }
 
-/* line 27, /Users/Chris/Development/crocus/public/css/landingpage.scss */
+/* line 33, /Users/Chris/Development/crocus/public/css/landingpage.scss */
 h1 {
   text-align: center;
   font-size: 72px; }
 
-/* line 32, /Users/Chris/Development/crocus/public/css/landingpage.scss */
+/* line 38, /Users/Chris/Development/crocus/public/css/landingpage.scss */
 h2 {
   color: #A100FF; }
 
-/* line 36, /Users/Chris/Development/crocus/public/css/landingpage.scss */
+/* line 42, /Users/Chris/Development/crocus/public/css/landingpage.scss */
 .byline {
   color: #222;
   font-size: 24px;
@@ -42,7 +50,7 @@ h2 {
   text-align: center;
   margin: 0; }
 
-/* line 48, /Users/Chris/Development/crocus/public/css/landingpage.scss */
+/* line 54, /Users/Chris/Development/crocus/public/css/landingpage.scss */
 a,
 a:link,
 a:hover,
@@ -50,35 +58,35 @@ a:active,
 a:visited {
   color: #A100FF; }
 
-/* line 53, /Users/Chris/Development/crocus/public/css/landingpage.scss */
+/* line 59, /Users/Chris/Development/crocus/public/css/landingpage.scss */
 p,
 li {
   line-height: 1.4; }
-  /* line 55, /Users/Chris/Development/crocus/public/css/landingpage.scss */
+  /* line 61, /Users/Chris/Development/crocus/public/css/landingpage.scss */
   p code,
   li code {
     padding: 1px;
     border-radius: 5px;
     background: #eee; }
 
-/* line 62, /Users/Chris/Development/crocus/public/css/landingpage.scss */
+/* line 68, /Users/Chris/Development/crocus/public/css/landingpage.scss */
 blockquote {
   font-style: italic;
   font-size: 24px;
   font-weight: 300;
   text-align: center; }
 
-/* line 70, /Users/Chris/Development/crocus/public/css/landingpage.scss */
+/* line 76, /Users/Chris/Development/crocus/public/css/landingpage.scss */
 .demonstration .breadcrumbs {
   max-width: 600px;
   margin: 0 auto;
   height: 150px; }
 
-/* line 75, /Users/Chris/Development/crocus/public/css/landingpage.scss */
+/* line 81, /Users/Chris/Development/crocus/public/css/landingpage.scss */
 .demonstration main {
   margin-top: 0px; }
 
-/* line 80, /Users/Chris/Development/crocus/public/css/landingpage.scss */
+/* line 86, /Users/Chris/Development/crocus/public/css/landingpage.scss */
 pre {
   padding: 5px;
   border-radius: 5px;
