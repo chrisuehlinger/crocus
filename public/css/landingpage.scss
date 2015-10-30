@@ -1,7 +1,18 @@
-@import url(https://fonts.googleapis.com/css?family=Lato:400,300italic,300);
+@import url(https://fonts.googleapis.com/css?family=Lato:400,300italic);
 body {
     font: 16px 'Lato', Helvetica, Arial, sans-serif;
     color: #222;
+}
+
+.github-ribbon {
+    position: fixed; 
+    top: 0; 
+    right: 0; 
+    border: 0; 
+    z-index: 200;
+    @media screen and (max-width: 600px) {
+        display:none;
+    }
 }
 
 article {
