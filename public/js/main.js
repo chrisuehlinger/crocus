@@ -8,7 +8,7 @@ update(d3.select('#rootPath')[0][0].value);
 
 function update(rootPath) {
     createLoadingIndicator();
-    d3.json("/directory/tree?root=" + rootPath, function (error, root) {
+    d3.json("/directory/lazy?root=" + rootPath + '&maxdepth=0', function (error, root) {
         removeLoadingIndicator();
         $('.error-message').remove();
         $(window).off('resize');

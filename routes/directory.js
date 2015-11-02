@@ -3,6 +3,7 @@ var router = express.Router();
 var fs = require('q-io/fs');
 var q = require('q');
 var path = require('path');
+var spawn = require('child_process').spawn;
 
 /* GET directory tree listing. */
 router.get('/tree', function (req, res) {
@@ -81,21 +82,38 @@ router.get('/lazy', function (req, res) {
                                     size: stat.size
                                 };
                             } else if (stat.isDirectory()) {
-                                if(currentDepth < maxDepth){
-                                    return traverseFileSystem(currentFile, currentDepth+1).then(function (children){
+//                                console.log(currentFile, stat);
+                                if (currentDepth < maxDepth) {
+                                    return traverseFileSystem(currentFile, currentDepth + 1).then(function (children) {
+                                        var totalSize = 0;
+                                        children.forEach(function (child) {
+                                            totalSize += child.size;
+                                        });
                                         return {
                                             name: file,
                                             fullPath: currentFile,
-                                            size: stat.size,
+                                            size: totalSize,
                                             children: children
                                         };
                                     });
                                 } else {
-                                    return {
-                                        name: file,
-                                        fullPath: currentFile,
-                                        size: stat.size
-                                    };
+
+                                    var deferred = q.defer();
+
+                                    var sizetask = spawn('du', ['-sk', currentFile]);
+                                    
+                                    sizetask.stdout
+                                        .on('data', function (data) {
+//                                            console.log(data.toString());
+                                            var size = +data.toString().split('\t')[0];
+                                            deferred.resolve({
+                                                name: file,
+                                                fullPath: currentFile,
+                                                size: size * 1024
+                                            });
+                                        });
+
+                                    return deferred.promise;
                                 }
                             }
                         });
@@ -116,8 +134,8 @@ router.get('/lazy', function (req, res) {
             size: totalSize,
             children: children
         };
-//        res.send(tree);
-                res.send('<pre><code>' + JSON.stringify(tree, null, '  ') + '</code></pre>');
+        res.send(tree);
+        //                res.send('<pre><code>' + JSON.stringify(tree, null, '  ') + '</code></pre>');
     });
 
 });
@@ -125,14 +143,14 @@ router.get('/lazy', function (req, res) {
 router.get('/autocomplete', function (req, res) {
     var root = req.query.root;
     var basename = '';
-    
+
     if (root[root.length - 1] !== path.sep) {
         basename = path.basename(root);
         root = path.dirname(root);
     } else {
         root = root.slice(0, -1);
     }
-    
+
     fs.list(root)
         .then(function (files) {
             var promises = [];
