@@ -7,7 +7,7 @@ var x = d3.scale.linear()
 
 var y = d3.scale.sqrt();
 
-var color = d3.scale.category20c();
+var color = d3.scale.category20b();
 
 var canvas = d3.select("canvas");
 
@@ -103,7 +103,7 @@ function render(root) {
         .style("stroke", "transparent")
         .on("click", click)
         .on("mouseover", mouseover)
-        //            .on('mouseout', mouseout)
+        .on('mouseout', mouseout)
         .append('title')
         .text(function (d) {
             return d.name + ' ' + bytes(d.size);
@@ -205,10 +205,14 @@ function canvasRender(nodes, highlighted) {
     ctx.strokeStyle = '#fff';
 
     nodes.forEach(function (d) {
-        ctx.fillStyle = color((d.children ? d : d.parent).name);
+        var theArc = arc(d);
+        //console.log(d.name, x(d.dx));
+//        if(x(d.dx) > 0){
+            ctx.fillStyle = color((d.children ? d : d.parent).name);
 
-        var path = new Path2D(arc(d));
-        ctx.stroke(path);
-        ctx.fill(path);
+            var path = new Path2D(theArc);
+            ctx.stroke(path);
+            ctx.fill(path);
+//        }
     });
 }
