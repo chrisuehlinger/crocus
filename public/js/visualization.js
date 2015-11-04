@@ -1,6 +1,7 @@
-var width = window.innerWidth,
-    height = window.innerHeight,
-    radius = Math.min(width, height) / 2;
+var width = screen.width,
+    height = screen.height,
+    diameter = Math.min(width, height),
+    radius = diameter / 2;
 
 var x = d3.scale.linear()
     .range([0, 2 * Math.PI]);
@@ -23,40 +24,41 @@ var devicePixelRatio = window.devicePixelRatio || 1,
 
 
 var svg = d3.select("svg.svg-mask")
-    .attr("width", width)
-    .attr("height", height)
+    .attr("width", radius)
+    .attr("height", radius)
     .append("g")
-    .attr("transform", "translate(" + width / 2 + "," + (height / 2 + 10) + ")")
+    .attr("transform", "translate(" + radius / 2 + "," + (radius / 2 + 10) + ")")
     .attr('class', 'highlightable');
 
 resize();
 
 function resize() {
-    width = window.innerWidth;
-    height = window.innerHeight;
-    radius = Math.min(width, height) / 2;
+    width = screen.width;
+    height = screen.height;
+    diameter = Math.min(width, height);
+    radius = diameter / 2;
 
     y.range([0, radius]);
 
     d3.select("svg.svg-mask")
-        .attr("width", width)
-        .attr("height", height)
+        .attr("width", diameter)
+        .attr("height", diameter)
         .select('g')
-        .attr("transform", "translate(" + width / 2 + "," + (height / 2 + 10) + ")");
+        .attr("transform", "translate(" + radius + "," + (radius + 10) + ")");
 
     canvas
-        .attr("width", width)
-        .attr("height", height);
+        .attr("width", diameter)
+        .attr("height", diameter);
 
     ctx.restore();
     if (devicePixelRatio !== backingStoreRatio) {
 
-        canvas.node().width = width * ratio;
-        canvas.node().height = height * ratio;
+        canvas.node().width = diameter * ratio;
+        canvas.node().height = diameter * ratio;
 
         canvas
-            .style("width", width + 'px')
-            .style("height", height + 'px');
+            .style("width", diameter + 'px')
+            .style("height", diameter + 'px');
 
         // now scale the context to counter
         // the fact that we've manually scaled
@@ -64,7 +66,7 @@ function resize() {
         ctx.scale(ratio, ratio);
 
     }
-    ctx.translate(width / 2, (height / 2 + 10));
+    ctx.translate(radius, (radius + 10));
 
 }
 
